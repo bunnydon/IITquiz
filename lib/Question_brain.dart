@@ -1,11 +1,11 @@
 import 'Question.dart';
 
 class QuestionBrain {
+  int _questionNumber = 0;
   List<Question> _question = [
     Question("Flutter is created by Google", true),
     Question("Mt. everest is not the highest mountain in the world", false),
     Question("Birds can fly", true),
-    Question("Flutter is created by Google", true),
     Question('Some cats are actually allergic to humans', true),
     Question('You can lead a cow down stairs but not up stairs.', false),
     Question('Approximately one quarter of human bones are in the feet.', true),
@@ -33,11 +33,29 @@ class QuestionBrain {
         true),
   ];
 
-  String getQuestionText(int questionNumber) {
-    return _question[questionNumber].questionText;
+  String getQuestionText() {
+    return _question[_questionNumber].questionText;
   }
 
-  bool getAnswerResult(int questionNumber) {
-    return _question[questionNumber].answerResult;
+  bool getAnswerResult() {
+    return _question[_questionNumber].answerResult;
+  }
+
+  void nextQuestion() {
+    if (_questionNumber < _question.length - 1) {
+      _questionNumber++;
+    }
+  }
+
+  bool isFinished() {
+    if (_questionNumber < _question.length - 1) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  void reset() {
+    _questionNumber = 0;
   }
 }
